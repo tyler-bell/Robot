@@ -20,8 +20,9 @@ namespace MyLittleRobot {
             panel1.Controls.Add(label1);
             CheckDirection(bob.CurrentDirection);
             DrawLabel();
+            bob.ThresholdReached += bob_ThresholdReached;
         }
-        
+
         private void DrawLabel() {
             center = (Point)new Size((label1.Parent.Width / 2) - (label1.Width / 2) + bob.Coords.X, (label1.Parent.Height / 2) - (label1.Height / 2) - bob.Coords.Y);
             label1.Location = center;
@@ -57,6 +58,9 @@ namespace MyLittleRobot {
         private void move10_Click(object sender, EventArgs e) {
             bob.Move(10);
             DrawLabel();
+        }
+        private static void bob_ThresholdReached(object sender, EventArgs e) {
+            MessageBox.Show("You've reached the boundary.");
         }
 
         private void CheckDirection(Robot.Direction direction) {
