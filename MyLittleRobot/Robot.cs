@@ -28,8 +28,7 @@ namespace MyLittleRobot {
             Coords = start;                         //set starting point to coords
             CurrentDirection = cardinal;            //set direction to cardinal
         }
-
-
+        
         public virtual void Move(int spaces) {      //method to move the arrow
             switch(CurrentDirection) {                  //switch case based on CurrentDirection
                 case Direction.North:                       //if north
