@@ -10,7 +10,7 @@ namespace MyLittleRobot {
 
         public enum Direction { North, South, East, West };         //enum of possible directions
         private Direction currentDirection;                         //Direction to hold currentDirection
-        private Point coords;                                       //Point to hold coords
+        private Point coords;                                       //arrows position stored as Point
         private int threshold = 100;                                //threshold of Threshold
         public event EventHandler ThresholdReached;                 //event for reaching threshold
 
@@ -19,8 +19,8 @@ namespace MyLittleRobot {
         public int Threshold { get => threshold; set => threshold = value; }
 
 
-        public Robot(Point start) {         //constructor receiving starting Point
-            Coords = start;                         //set starting point to coords
+        public Robot() {         //constructor receiving starting Point
+            Coords = new Point(0, 0);               //create new point of 0,0 for coords
             CurrentDirection = Direction.North;     //set direction to North
         }
 

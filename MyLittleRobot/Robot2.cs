@@ -10,7 +10,7 @@ namespace MyLittleRobot {
 
         private int counter;            //add int for counter
 
-        public Robot2(Point start) : base(start) {      //constructor
+        public Robot2() : base() {      //default constructor
 
         }
 

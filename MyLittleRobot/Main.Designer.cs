@@ -39,26 +39,28 @@
             // 
             // DisplayPanel
             // 
+            this.DisplayPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.DisplayPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.DisplayPanel.Controls.Add(this.ArrowLBL);
-            this.DisplayPanel.Location = new System.Drawing.Point(13, 27);
+            this.DisplayPanel.Location = new System.Drawing.Point(16, 27);
             this.DisplayPanel.Margin = new System.Windows.Forms.Padding(0);
             this.DisplayPanel.Name = "DisplayPanel";
-            this.DisplayPanel.Size = new System.Drawing.Size(227, 222);
+            this.DisplayPanel.Size = new System.Drawing.Size(220, 220);
             this.DisplayPanel.TabIndex = 0;
             // 
             // ArrowLBL
             // 
-            this.ArrowLBL.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ArrowLBL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ArrowLBL.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ArrowLBL.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ArrowLBL.Font = new System.Drawing.Font("Wingdings", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.ArrowLBL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ArrowLBL.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.ArrowLBL.Location = new System.Drawing.Point(13, 11);
             this.ArrowLBL.Margin = new System.Windows.Forms.Padding(0);
             this.ArrowLBL.Name = "ArrowLBL";
-            this.ArrowLBL.Size = new System.Drawing.Size(27, 22);
+            this.ArrowLBL.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.ArrowLBL.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ArrowLBL.Size = new System.Drawing.Size(34, 28);
             this.ArrowLBL.TabIndex = 0;
-            this.ArrowLBL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // NorthBTN
             // 
@@ -122,12 +124,13 @@
             // 
             // ArrowCoordsLBL
             // 
-            this.ArrowCoordsLBL.AutoSize = true;
-            this.ArrowCoordsLBL.Location = new System.Drawing.Point(23, 9);
+            this.ArrowCoordsLBL.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ArrowCoordsLBL.Location = new System.Drawing.Point(0, 0);
             this.ArrowCoordsLBL.Name = "ArrowCoordsLBL";
-            this.ArrowCoordsLBL.Size = new System.Drawing.Size(35, 13);
+            this.ArrowCoordsLBL.Size = new System.Drawing.Size(253, 27);
             this.ArrowCoordsLBL.TabIndex = 7;
             this.ArrowCoordsLBL.Text = "label2";
+            this.ArrowCoordsLBL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DisplayCoordsLBL
             // 
@@ -137,11 +140,12 @@
             this.DisplayCoordsLBL.Size = new System.Drawing.Size(35, 13);
             this.DisplayCoordsLBL.TabIndex = 8;
             this.DisplayCoordsLBL.Text = "label3";
+            this.DisplayCoordsLBL.Visible = false;
             // 
             // CounterLBL
             // 
             this.CounterLBL.AutoSize = true;
-            this.CounterLBL.Location = new System.Drawing.Point(15, 319);
+            this.CounterLBL.Location = new System.Drawing.Point(13, 309);
             this.CounterLBL.Name = "CounterLBL";
             this.CounterLBL.Size = new System.Drawing.Size(35, 13);
             this.CounterLBL.TabIndex = 9;
@@ -162,6 +166,7 @@
             this.Controls.Add(this.WestBTN);
             this.Controls.Add(this.NorthBTN);
             this.Controls.Add(this.DisplayPanel);
+            this.MaximizeBox = false;
             this.Name = "Main";
             this.Text = "Robot";
             this.DisplayPanel.ResumeLayout(false);

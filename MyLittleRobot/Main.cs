@@ -11,15 +11,14 @@ using System.Windows.Forms;
 
 namespace MyLittleRobot {
     public partial class Main : Form {
-
-        private static Point start = new Point(0, 0);       //start point to pass to the robot
-        private Robot2 bob = new Robot2(start);             //creating an instance of the robot class
-        private Point center;                               //creating a point to center the arrow
+                
+        private Robot2 bob = new Robot2();             //creating an instance of the robot class
 
         public Main() {
             InitializeComponent();
             this.Controls.Add(DisplayPanel);                    //adding the panel to the form's controls
             DisplayPanel.Controls.Add(ArrowLBL);                //adding the label1 (arrow) to the panel's controls
+            ArrowLBL.TextAlign = ContentAlignment.MiddleCenter;
             SetArrow(bob.CurrentDirection);                     //call method SetArrow passing the direction from bob
             UpdateDisplay();                                    //draw the arrow
             bob.ThresholdReached += bob_ThresholdReached;       //some shit to do with events
@@ -38,24 +37,24 @@ namespace MyLittleRobot {
         }
 
         private void DrawDisplayLabels() {          //method to draw display labels
-            ArrowCoordsLBL.Text = "X: " + bob.Coords.X + "  Y: " + bob.Coords.Y;    //arrow's coords assuming center is 0,0
-            DisplayCoordsLBL.Text = "X: " + center.X + "  Y: " + center.Y;          //display coords of the arrow within the panel
-            CounterLBL.Text = "Counter: " + bob.Counter;                            //label to test counter
+            ArrowCoordsLBL.Text = "" + bob.Coords;    //arrow's coords assuming center is 0,0
+            DisplayCoordsLBL.Text = "" + ArrowLBL.Location;          //display coords of the arrow within the panel
+            CounterLBL.Text = "Counter: " + bob.Counter;             //label to test counter
         }
 
         private void SetArrow(Robot.Direction direction) {     //method to set the proper arrow receiving the direction set in bob
             switch (direction) {                                    //switch case based on direction
                 case Robot.Direction.North:                             //if north
-                    ArrowLBL.Text = char.ConvertFromUtf32(0x2191);            //draw north arrow
+                    ArrowLBL.Text = char.ConvertFromUtf32(0xDD);            //draw north arrow
                     break;
                 case Robot.Direction.South:                             //if south
-                    ArrowLBL.Text = char.ConvertFromUtf32(0x2193);            //draw south arrow
+                    ArrowLBL.Text = char.ConvertFromUtf32(0xDE);            //draw south arrow
                     break;
                 case Robot.Direction.East:                              //if east
-                    ArrowLBL.Text = char.ConvertFromUtf32(0x2192);            //draw east arrow
+                    ArrowLBL.Text = char.ConvertFromUtf32(0xDC);            //draw east arrow
                     break; 
                 case Robot.Direction.West:                              //if west
-                    ArrowLBL.Text = char.ConvertFromUtf32(0x2190);            //draw west arrow
+                    ArrowLBL.Text = char.ConvertFromUtf32(0xDB);            //draw west arrow
                     break;
             }
         }
