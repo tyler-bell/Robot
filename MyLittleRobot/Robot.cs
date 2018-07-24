@@ -26,35 +26,16 @@ namespace MyLittleRobot {
         public void Move(int spaces) {
             switch(CurrentDirection) {
                 case Direction.North:
-                    if (spaces == 1) {
-                        coords.Offset(0, 1); 
-                    } else {
-                        coords.Offset(0, 10);
-                    }
-
+                    coords.Offset(0, spaces);
                     break;
                 case Direction.East:
-                    if (spaces == 1) {
-                        coords.Offset(1, 0);
-                    } else {
-                        coords.Offset(10, 0);
-                    }
+                    coords.Offset(spaces, 0);
                     break;
                 case Direction.South:
-                    if (spaces == 1) {
-                        coords.Offset(0, -1);
-                    } else {
-                        coords.Offset(0, -10);
-                    }
+                    coords.Offset(0, -spaces);
                     break;
                 case Direction.West:
-                    if (spaces == 1) {
-                        coords.Offset(-1, 0);
-                    } else {
-                        coords.Offset(-10, 0);
-                    }
-                    break;
-                default:
+                    coords.Offset(-spaces, 0);
                     break;
             }
             CheckRange();
