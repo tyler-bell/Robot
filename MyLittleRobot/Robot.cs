@@ -7,67 +7,71 @@ using System.Threading.Tasks;
 
 namespace MyLittleRobot {
     class Robot {
-        public enum Direction { North, South, East, West };
-        private Direction currentDirection;
-        private Point coords;
-        private int threshold = 100;
-        public event EventHandler ThresholdReached;
+
+        public enum Direction { North, South, East, West };         //enum of possible directions
+        private Direction currentDirection;                         //Direction to hold currentDirection
+        private Point coords;                                       //Point to hold coords
+        private int threshold = 100;                                //threshold of Threshold
+        public event EventHandler ThresholdReached;                 //event for reaching threshold
 
         public Direction CurrentDirection { get => currentDirection; set => currentDirection = value; }
         public Point Coords { get => coords; set => coords = value; }
         public int Threshold { get => threshold; set => threshold = value; }
 
 
-        public Robot(Point start) {
-            Coords = start;
-            CurrentDirection = Direction.North;
+        public Robot(Point start) {         //constructor receiving starting Point
+            Coords = start;                         //set starting point to coords
+            CurrentDirection = Direction.North;     //set direction to North
         }
 
-        public void Move(int spaces) {
-            switch(CurrentDirection) {
-                case Direction.North:
-                    coords.Offset(0, spaces);
-                    break;
-                case Direction.East:
-                    coords.Offset(spaces, 0);
-                    break;
-                case Direction.South:
-                    coords.Offset(0, -spaces);
-                    break;
-                case Direction.West:
-                    coords.Offset(-spaces, 0);
-                    break;
-            }
-            CheckRange();
+        public Robot(Point start, Direction cardinal) {         //constructor receiving starting Point
+            Coords = start;                         //set starting point to coords
+            CurrentDirection = cardinal;            //set direction to cardinal
         }
 
-        private void CheckRange() {
-            if (Coords.X > 100) {
-                Coords = (Point) new Size(100,Coords.Y);
-                OnThresholdReached(EventArgs.Empty);
+
+        public virtual void Move(int spaces) {      //method to move the arrow
+            switch(CurrentDirection) {                  //switch case based on CurrentDirection
+                case Direction.North:                       //if north
+                    coords.Offset(0, spaces);                   //offset y by positive spaces
+                    break;
+                case Direction.East:                        //if east
+                    coords.Offset(spaces, 0);                   //offset x by positive spaces 
+                    break;
+                case Direction.South:                       //if south
+                    coords.Offset(0, -spaces);                  //offset y by negative spaces
+                    break;
+                case Direction.West:                        //if west
+                    coords.Offset(-spaces, 0);                  //offset x by negative spaces
+                    break;
             }
-            if (Coords.X < -100) {
-                Coords = (Point)new Size(-100, Coords.Y);
-                OnThresholdReached(EventArgs.Empty);
+            CheckRange();                               //call CheckRange method to ensure we're within bounds
+        }
+
+        private void CheckRange() {                 //method to ensure we're in bounds
+            if (Coords.X > Threshold) {                 //if X position is greater than threshold (100)
+                Coords = (Point) new Size(Threshold,Coords.Y);  //set coords to 100,Coords.Y
+                OnThresholdReached(EventArgs.Empty);            //throw event
             }
-            if (Coords.Y > 100) {
-                Coords = (Point)new Size(Coords.X, 100);
-                OnThresholdReached(EventArgs.Empty);
+            if (Coords.X < -Threshold) {                //if X position is less than negative threshold (-100)
+                Coords = (Point)new Size(-Threshold, Coords.Y); //set coords to -100,Coords.Y
+                OnThresholdReached(EventArgs.Empty);            //throw event
             }
-            if (Coords.Y < -100) {
-                Coords = (Point)new Size(Coords.X, -100);
-                OnThresholdReached(EventArgs.Empty);
+            if (Coords.Y > Threshold) {                 //if Y position is greater than threshold (100)
+                Coords = (Point)new Size(Coords.X, Threshold);  //set coords to Coords.X,100
+                OnThresholdReached(EventArgs.Empty);            //throw event
+            }
+            if (Coords.Y < -Threshold) {                //if Y position is less than negative threshold (-100)
+                Coords = (Point)new Size(Coords.X, -Threshold); //set coords to Coords.X,-100
+                OnThresholdReached(EventArgs.Empty);            //throw event
             }
         }
 
-        protected virtual void OnThresholdReached(EventArgs e) {
+        protected virtual void OnThresholdReached(EventArgs e) {        //event handler
             EventHandler handler = ThresholdReached;
             if (handler != null) {
                 handler(this, e);
             }
         }
-
-
-
     }
 }

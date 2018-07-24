@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 namespace MyLittleRobot {
     class Robot2 : Robot {
 
-        private int counter;
+        private int counter;            //add int for counter
 
-        public Robot2(Point start) : base(start) {
+        public Robot2(Point start) : base(start) {      //constructor
 
         }
 
         public int Counter { get => counter; set => counter = value; }
         
-        public override void Move(int spaces) {
-            Point temp = Coords;
-            base.Move(spaces);
-            if (temp != Coords) {
-                Counter += spaces;
+        public override void Move(int spaces) {     //override Move method to include counter
+            Point temp = Coords;                    //get Coords and set as temp Point
+            base.Move(spaces);                      //call original method
+            if (temp != Coords) {                   //if new coords aren't the same as temp
+                Counter += spaces;                  //increase counter because by goly, we've moved!
             }
         }
     }
