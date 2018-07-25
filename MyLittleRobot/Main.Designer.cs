@@ -129,17 +129,18 @@
             this.ArrowCoordsLBL.Name = "ArrowCoordsLBL";
             this.ArrowCoordsLBL.Size = new System.Drawing.Size(253, 27);
             this.ArrowCoordsLBL.TabIndex = 7;
-            this.ArrowCoordsLBL.Text = "label2";
+            this.ArrowCoordsLBL.Text = "Arrow Coords";
             this.ArrowCoordsLBL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DisplayCoordsLBL
             // 
             this.DisplayCoordsLBL.AutoSize = true;
-            this.DisplayCoordsLBL.Location = new System.Drawing.Point(127, 9);
+            this.DisplayCoordsLBL.Location = new System.Drawing.Point(159, 309);
             this.DisplayCoordsLBL.Name = "DisplayCoordsLBL";
-            this.DisplayCoordsLBL.Size = new System.Drawing.Size(35, 13);
+            this.DisplayCoordsLBL.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.DisplayCoordsLBL.Size = new System.Drawing.Size(77, 13);
             this.DisplayCoordsLBL.TabIndex = 8;
-            this.DisplayCoordsLBL.Text = "label3";
+            this.DisplayCoordsLBL.Text = "Display Coords";
             this.DisplayCoordsLBL.Visible = false;
             // 
             // CounterLBL
@@ -147,9 +148,9 @@
             this.CounterLBL.AutoSize = true;
             this.CounterLBL.Location = new System.Drawing.Point(13, 309);
             this.CounterLBL.Name = "CounterLBL";
-            this.CounterLBL.Size = new System.Drawing.Size(35, 13);
+            this.CounterLBL.Size = new System.Drawing.Size(50, 13);
             this.CounterLBL.TabIndex = 9;
-            this.CounterLBL.Text = "label4";
+            this.CounterLBL.Text = "Counter: ";
             // 
             // Main
             // 
@@ -167,6 +168,7 @@
             this.Controls.Add(this.NorthBTN);
             this.Controls.Add(this.DisplayPanel);
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Main";
             this.Text = "Robot";
             this.DisplayPanel.ResumeLayout(false);
