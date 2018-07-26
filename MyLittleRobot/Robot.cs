@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MyLittleRobot {
     class Robot {
@@ -11,12 +8,12 @@ namespace MyLittleRobot {
         public enum Direction { North, South, East, West };         //enum of possible directions
         private Direction currentDirection;                         //Direction to hold currentDirection
         private Point coords;                                       //arrows position stored as Point
-        private int threshold = 100;                                //threshold of Threshold
-        public event EventHandler ThresholdReached;                 //event for reaching threshold
+        private int boundary = 100;                                //Boundary of Boundary
+        public event EventHandler BoundaryReached;                 //event for reaching Boundary
 
         public Direction CurrentDirection { get => currentDirection; set => currentDirection = value; }
         public Point Coords { get => coords; set => coords = value; }
-        public int Threshold { get => threshold; set => threshold = value; }
+        public int Boundary { get => boundary; set => boundary = value; }
 
 
         public Robot() {         //constructor receiving starting Point
@@ -29,7 +26,7 @@ namespace MyLittleRobot {
             CurrentDirection = cardinal;            //set direction to cardinal
         }
         
-        public virtual void Move(int spaces) {      //method to move the arrow
+        private void Move(int spaces) {      //method to move the arrow
             switch(CurrentDirection) {                  //switch case based on CurrentDirection
                 case Direction.North:                       //if north
                     coords.Offset(0, spaces);                   //offset y by positive spaces
@@ -44,33 +41,46 @@ namespace MyLittleRobot {
                     coords.Offset(-spaces, 0);                  //offset x by negative spaces
                     break;
             }
-            CheckRange();                               //call CheckRange method to ensure we're within bounds
         }
 
-        private void CheckRange() {                 //method to ensure we're in bounds
-            if (Coords.X > Threshold) {                 //if X position is greater than threshold (100)
-                Coords = (Point) new Size(Threshold,Coords.Y);  //set coords to 100,Coords.Y
-                OnThresholdReached(EventArgs.Empty);            //throw event
-            }
-            if (Coords.X < -Threshold) {                //if X position is less than negative threshold (-100)
-                Coords = (Point)new Size(-Threshold, Coords.Y); //set coords to -100,Coords.Y
-                OnThresholdReached(EventArgs.Empty);            //throw event
-            }
-            if (Coords.Y > Threshold) {                 //if Y position is greater than threshold (100)
-                Coords = (Point)new Size(Coords.X, Threshold);  //set coords to Coords.X,100
-                OnThresholdReached(EventArgs.Empty);            //throw event
-            }
-            if (Coords.Y < -Threshold) {                //if Y position is less than negative threshold (-100)
-                Coords = (Point)new Size(Coords.X, -Threshold); //set coords to Coords.X,-100
-                OnThresholdReached(EventArgs.Empty);            //throw event
+        public virtual void CheckRange(int spaces) {                 //method to ensure we're in bounds
+            switch (CurrentDirection) {                  //switch case based on CurrentDirection
+                case Direction.North:                       //if north
+                    if (Coords.Y + spaces > Boundary) {     //get Y position, add spaces and see if we're outside the boundary
+                        OnBoundaryReached(EventArgs.Empty);             //if so throw event
+                    } else {
+                        Move(spaces);                                   //otherwise call move passing spaces
+                    }
+                    break;
+                case Direction.East:                        //if east
+                    if (Coords.X + spaces > Boundary) {     //get X position, add spaces and see if we're outside the boundary
+                        OnBoundaryReached(EventArgs.Empty);            //if so throw event
+                    } else {
+                        Move(spaces);                                   //otherwise call move passing spaces
+                    }
+                    break;
+                case Direction.South:                       //if south
+                    if (Coords.Y - spaces < -Boundary) {     //get Y position, less spaces and see if we're outside the boundary
+                        OnBoundaryReached(EventArgs.Empty);            //if so throw event
+                    } else {
+                        Move(spaces);                                   //otherwise call move passing spaces
+                    }
+                    break;
+                case Direction.West:                        //if west
+                    if (Coords.X - spaces < -Boundary) {     //get X position, less spaces and see if we're outside the boundary
+                        OnBoundaryReached(EventArgs.Empty);            //if so throw event
+                    } else {
+                        Move(spaces);                                   //otherwise call move passing spaces
+                    }
+                    break;
             }
         }
 
-        protected virtual void OnThresholdReached(EventArgs e) {        //event handler
-            EventHandler handler = ThresholdReached;
-            if (handler != null) {
-                handler(this, e);
-            }
+        protected virtual void OnBoundaryReached(EventArgs e) {        //event handler
+            EventHandler handler = BoundaryReached;                    //instantiate the event
+            handler(this, e);                                          //call the event
         }
+
+
     }
 }

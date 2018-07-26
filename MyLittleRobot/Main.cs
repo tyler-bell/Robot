@@ -1,27 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
 namespace MyLittleRobot {
     public partial class Main : Form {
                 
-        private Robot2 bob = new Robot2();             //creating an instance of the robot class
+        private Robot bob = new Robot();             //creating an instance of the robot class
 
         public Main() {
             InitializeComponent();
             this.Controls.Add(DisplayPanel);                    //adding the panel to the form's controls
             DisplayPanel.Controls.Add(ArrowLBL);                //adding the label1 (arrow) to the panel's controls
-            ArrowLBL.TextAlign = ContentAlignment.MiddleCenter;
             SetArrow(bob.CurrentDirection);                     //call method SetArrow passing the direction from bob
             UpdateDisplay();                                    //draw the arrow
-            bob.ThresholdReached += bob_ThresholdReached;       //some shit to do with events
+            bob.BoundaryReached += bob_BoundaryReached;         //assigning delegates
         }
 
         private void UpdateDisplay() {  //method to update display
@@ -39,7 +32,8 @@ namespace MyLittleRobot {
         private void DrawDisplayLabels() {          //method to draw display labels
             ArrowCoordsLBL.Text = "" + bob.Coords;    //arrow's coords assuming center is 0,0
             DisplayCoordsLBL.Text = "" + ArrowLBL.Location;          //display coords of the arrow within the panel
-            CounterLBL.Text = "Counter: " + bob.Counter;             //label to test counter
+           // CounterLBL.Visible = true;                             //realized I could just hide and switch when on needed
+           // CounterLBL.Text = "Counter: " + bob.Counter;             //label to test counter
         }
 
         private void SetArrow(Robot.Direction direction) {     //method to set the proper arrow receiving the direction set in bob
@@ -59,7 +53,7 @@ namespace MyLittleRobot {
             }
         }
 
-        private static void bob_ThresholdReached(object sender, EventArgs e) {
+        private static void bob_BoundaryReached(object sender, EventArgs e) {      //event handler for reaching the edge
             MessageBox.Show("You've reached the boundary.");                    //display error when threshold event triggered
         }
 
@@ -80,12 +74,19 @@ namespace MyLittleRobot {
             SetArrow(bob.CurrentDirection);                         //SetArrow to current direction
         }
         private void move1_Click(object sender, EventArgs e) {   //move 1 button click
-            bob.Move(1);                                            //call move from bob and pass 1
+            bob.CheckRange(1);                                            //call move from bob and pass 1
             UpdateDisplay();                                            //redraw label
         }
         private void move10_Click(object sender, EventArgs e) {     //move 10 button click
-            bob.Move(10);                                               //call move from bob and pass 10
+            bob.CheckRange(10);                                               //call move from bob and pass 10
             UpdateDisplay();                                                //redraw label
         }
+
+        private void ExitButton_Click_1(object sender, EventArgs e) {   //close button
+            this.Close();                                       //close app
+        }
+
+
+
     }
 }

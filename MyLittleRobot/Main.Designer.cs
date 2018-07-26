@@ -34,6 +34,7 @@
             this.ArrowCoordsLBL = new System.Windows.Forms.Label();
             this.DisplayCoordsLBL = new System.Windows.Forms.Label();
             this.CounterLBL = new System.Windows.Forms.Label();
+            this.ExitButton = new System.Windows.Forms.Button();
             this.DisplayPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,7 +65,7 @@
             // 
             // NorthBTN
             // 
-            this.NorthBTN.Location = new System.Drawing.Point(116, 253);
+            this.NorthBTN.Location = new System.Drawing.Point(116, 250);
             this.NorthBTN.Name = "NorthBTN";
             this.NorthBTN.Size = new System.Drawing.Size(20, 20);
             this.NorthBTN.TabIndex = 1;
@@ -74,7 +75,7 @@
             // 
             // WestBTN
             // 
-            this.WestBTN.Location = new System.Drawing.Point(90, 279);
+            this.WestBTN.Location = new System.Drawing.Point(96, 270);
             this.WestBTN.Name = "WestBTN";
             this.WestBTN.Size = new System.Drawing.Size(20, 20);
             this.WestBTN.TabIndex = 2;
@@ -84,7 +85,7 @@
             // 
             // SouthBTN
             // 
-            this.SouthBTN.Location = new System.Drawing.Point(116, 305);
+            this.SouthBTN.Location = new System.Drawing.Point(116, 290);
             this.SouthBTN.Name = "SouthBTN";
             this.SouthBTN.Size = new System.Drawing.Size(20, 20);
             this.SouthBTN.TabIndex = 3;
@@ -94,7 +95,7 @@
             // 
             // EastBTN
             // 
-            this.EastBTN.Location = new System.Drawing.Point(142, 279);
+            this.EastBTN.Location = new System.Drawing.Point(136, 270);
             this.EastBTN.Name = "EastBTN";
             this.EastBTN.Size = new System.Drawing.Size(20, 20);
             this.EastBTN.TabIndex = 4;
@@ -104,7 +105,7 @@
             // 
             // Move1
             // 
-            this.Move1.Location = new System.Drawing.Point(26, 279);
+            this.Move1.Location = new System.Drawing.Point(26, 270);
             this.Move1.Name = "Move1";
             this.Move1.Size = new System.Drawing.Size(50, 20);
             this.Move1.TabIndex = 5;
@@ -114,7 +115,7 @@
             // 
             // Move10
             // 
-            this.Move10.Location = new System.Drawing.Point(176, 279);
+            this.Move10.Location = new System.Drawing.Point(176, 270);
             this.Move10.Name = "Move10";
             this.Move10.Size = new System.Drawing.Size(50, 20);
             this.Move10.TabIndex = 6;
@@ -151,12 +152,24 @@
             this.CounterLBL.Size = new System.Drawing.Size(50, 13);
             this.CounterLBL.TabIndex = 9;
             this.CounterLBL.Text = "Counter: ";
+            this.CounterLBL.Visible = false;
+            // 
+            // ExitButton
+            // 
+            this.ExitButton.Location = new System.Drawing.Point(176, 305);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(50, 20);
+            this.ExitButton.TabIndex = 10;
+            this.ExitButton.Text = "Exit";
+            this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click_1);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(253, 334);
+            this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.CounterLBL);
             this.Controls.Add(this.DisplayCoordsLBL);
             this.Controls.Add(this.ArrowCoordsLBL);
@@ -190,6 +203,7 @@
         private System.Windows.Forms.Label ArrowCoordsLBL;
         private System.Windows.Forms.Label DisplayCoordsLBL;
         private System.Windows.Forms.Label CounterLBL;
+        private System.Windows.Forms.Button ExitButton;
     }
 }
 
